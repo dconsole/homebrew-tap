@@ -5,36 +5,46 @@
 class Dconsole < Formula
   desc "Transport-agnostic CLI proxy for Drupal — one command surface across ssh, ddev, lando, docker, kubectl, and subprocess plugins."
   homepage "https://github.com/dconsole/dconsole"
-  version "0.5.1"
+  version "0.5.2"
   license "GPL-2.0-only"
 
   on_macos do
-    url "https://github.com/dconsole/dconsole/releases/download/v0.5.1/dconsole_0.5.1_darwin_all.tar.gz"
-    sha256 "cca8f2b49db9598116fc1c54c696801760ca3f71253e08c7ffa5d9c1dbc96d26"
+    url "https://github.com/dconsole/dconsole/releases/download/v0.5.2/dconsole_0.5.2_darwin_all.tar.gz"
+    sha256 "d85ef4aa6f19787ec72d0a19c92e1665cb7dc11295fd14e5e54464b501c844cb"
 
     define_method(:install) do
       bin.install "dconsole"
+      # dcons is the short-form binary alias. Symlinked rather than
+      # copied so a single binary update covers both names.
+      bin.install_symlink "dconsole" => "dcons"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/dconsole/dconsole/releases/download/v0.5.1/dconsole_0.5.1_linux_amd64.tar.gz"
-      sha256 "d260a38d21ef7478bd1a924c7235e306f1ab8951b9279075ac847e95d1c96b39"
+      url "https://github.com/dconsole/dconsole/releases/download/v0.5.2/dconsole_0.5.2_linux_amd64.tar.gz"
+      sha256 "ed62e3703f58430925b18f08fe37ca38df025281905dd185b6a0cd476f0fc770"
       define_method(:install) do
         bin.install "dconsole"
+        # dcons is the short-form binary alias. Symlinked rather than
+        # copied so a single binary update covers both names.
+        bin.install_symlink "dconsole" => "dcons"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/dconsole/dconsole/releases/download/v0.5.1/dconsole_0.5.1_linux_arm64.tar.gz"
-      sha256 "1e998b25e0e20afd1a4bcdd7a462078fd011b6b3cbf3be0b238de1682d6285fc"
+      url "https://github.com/dconsole/dconsole/releases/download/v0.5.2/dconsole_0.5.2_linux_arm64.tar.gz"
+      sha256 "a5e079017b02f69bae2eb9d95f44ac83b4e94b0acfde6ceb6c245b6169430043"
       define_method(:install) do
         bin.install "dconsole"
+        # dcons is the short-form binary alias. Symlinked rather than
+        # copied so a single binary update covers both names.
+        bin.install_symlink "dconsole" => "dcons"
       end
     end
   end
 
   test do
     assert_match "dconsole", shell_output("#{bin}/dconsole --version")
+    assert_match "dconsole", shell_output("#{bin}/dcons --version")
   end
 end
