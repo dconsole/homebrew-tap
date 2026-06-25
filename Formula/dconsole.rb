@@ -5,12 +5,12 @@
 class Dconsole < Formula
   desc "Transport-agnostic CLI proxy for Drupal — one command surface across ssh, ddev, lando, docker, kubectl, and subprocess plugins."
   homepage "https://github.com/dconsole/dconsole"
-  version "0.5.6"
+  version "0.5.7"
   license "GPL-2.0-only"
 
   on_macos do
-    url "https://github.com/dconsole/dconsole/releases/download/v0.5.6/dconsole_0.5.6_darwin_all.tar.gz"
-    sha256 "750715f575f72a43d07d4586305666275df767e61f66a62ee24e60894d8469b7"
+    url "https://github.com/dconsole/dconsole/releases/download/v0.5.7/dconsole_0.5.7_darwin_all.tar.gz"
+    sha256 "ab5043b60f0e77c975e34a182e2136ec25eedec8fb8f9cfaf08c4ae5ae676e28"
 
     define_method(:install) do
       bin.install "dconsole"
@@ -22,8 +22,8 @@ class Dconsole < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/dconsole/dconsole/releases/download/v0.5.6/dconsole_0.5.6_linux_amd64.tar.gz"
-      sha256 "24a41c2276c2ca0723bee40367629cd23c479da5eed0895d012184606e11ad36"
+      url "https://github.com/dconsole/dconsole/releases/download/v0.5.7/dconsole_0.5.7_linux_amd64.tar.gz"
+      sha256 "c995355dd4da5fdc1d564c669381a7e2c571d4a2eab2440c7c13c99c9574c72f"
       define_method(:install) do
         bin.install "dconsole"
         # dcons is the short-form binary alias. Symlinked rather than
@@ -32,8 +32,8 @@ class Dconsole < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/dconsole/dconsole/releases/download/v0.5.6/dconsole_0.5.6_linux_arm64.tar.gz"
-      sha256 "8772fda7d893e55ea225e28c24be34cb4afedeede30c7a3b8a1f75591a286a36"
+      url "https://github.com/dconsole/dconsole/releases/download/v0.5.7/dconsole_0.5.7_linux_arm64.tar.gz"
+      sha256 "9dc8d1bdaee93e968a33c21a8db9278e6162884b831b533190a850dff2dc4a28"
       define_method(:install) do
         bin.install "dconsole"
         # dcons is the short-form binary alias. Symlinked rather than
